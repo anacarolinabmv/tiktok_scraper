@@ -1,0 +1,170 @@
+@font-face {
+  font-family: 'Proxima nova';
+  src: url(/static/font/ProximaNova-Regular.otf);
+  font-weight: normal;
+}
+@font-face {
+  font-family: 'Proxima nova';
+  src: url(/static/font/ProximaNova-Semibold.otf);
+  font-weight: bold;
+}
+
+:root {
+  --color-font: rgba(22, 24, 35);
+  --color-icons: rgba(22, 24, 35, 0.34);
+  --color-background: rgba(22, 24, 35, 0.06);
+
+  --transition-icon--color: color ease-in 150ms;
+  --transition-icon--scale: transform ease-in 200ms;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  max-height: 100vh;
+  height: 100%;
+  width: 100vw;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-font);
+  font-family: 'Proxima nova';
+}
+i {
+  transform: scale(1.1);
+  transition: var(--transition-icon--scale), var(--transition-icon--color);
+
+  &:hover {
+    color: var(--color-font);
+  }
+
+  &:active {
+    transform: scale(1);
+  }
+}
+.app-container {
+  width: 100%;
+  max-width: 740px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 140px;
+}
+.logo-box {
+  width: 100%;
+  text-align: center;
+}
+.search {
+  width: 100%;
+  margin-top: 40px;
+}
+.data-container {
+  width: 100%;
+  max-width: 100%;
+  margin-top: 40px;
+
+  display: flex;
+  gap: 30px;
+  position: relative;
+
+  padding: 30px;
+  background-color: rgba(245, 245, 245, 0.85);
+  border-radius: 20px;
+  overflow: hidden;
+}
+.user-image {
+  align-self: center;
+  flex: 0 0 150px;
+
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+
+  img {
+    height: 100%;
+    width: 100%;
+  }
+}
+.user-data {
+  font-size: 20px;
+  list-style-type: none;
+
+  li:last-child {
+    word-break: break-all;
+  }
+}
+
+.form {
+  display: flex;
+}
+
+.form__input {
+  width: 100%;
+  padding: 14px 18px;
+  font-size: 18px;
+  background-color: var(--color-background);
+  border: none;
+  border-radius: 92px;
+  box-shadow: 0px 3px 15px rgb(51, 51, 51, 0.15);
+  font-family: inherit;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0px 3px 10px rgb(51, 51, 51, 0.18);
+  }
+}
+
+.btn-submit {
+  margin-left: -30px;
+  background-color: transparent;
+  color: var(--color-icons);
+  border: none;
+  cursor: pointer;
+  transition: var(--transition-icon--color);
+
+  &:hover {
+    color: var(--color-font);
+  }
+}
+
+.copy-data {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-copy {
+  background-color: transparent;
+  padding: 15px;
+  cursor: pointer;
+  border: none;
+  color: var(--color-icons);
+
+  position: relative;
+}
+
+.error-message-wrapper {
+  display: flex;
+  align-items: baseline;
+
+  gap: 10px;
+  margin-top: 40px;
+}
+
+.error-message {
+  font-size: 18px;
+}
