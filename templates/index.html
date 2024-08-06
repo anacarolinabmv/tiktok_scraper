@@ -7,43 +7,50 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='CSS/style.css') }}" />
     <script src="https://kit.fontawesome.com/c356afc66b.js" crossorigin="anonymous"></script>
   </head>
+
   <body>
     <div class="app-container">
       <div class="logo-box">
         <img src="/static/logo.jpg" alt="Tiktok logo" class="logo" />
       </div>
       <div class="search">
-        <form method="POST" class="form">
-          <input type="text" class="form__input" name="user_input" placeholder="Search" required />
+        <form action="#" method="POST" class="form" id="form">
+          <input type="text" class="form__input" name="user_input" placeholder="Search"  />
           <button type="submit" class="btn-submit">
             <i class="fa-solid fa-magnifying-glass fa-lg"></i>
           </button>
         </form>
       </div>
 
-      {% if error_message %}
-      <div class="error-message-wrapper">
-        <i class="fa-solid fa-triangle-exclamation"></i>
-        <p class="error-message">{{ error_message }}</p>
-      </div>
-      {% elif result %}
-      <div class="data-container">
-        <div class="user-image">
-          <a href="{{result["URL bilde"]}}"  target="_blank" >
-            <img src="{{result["URL bilde"]}}" alt="User picture" />
-           </a>
+      {% with messages = get_flashed_messages(with_categories=true) %} 
+        {% if messages %} 
+          {% for category, message in messages %}
+            <div class="error-message-wrapper">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <p class="error-message">{{message}}</p>
+            </div>
+          {% endfor %} 
+        {% endif %} 
+      {% endwith %} 
+      
+      {% if data %}
+        <div class="data-container">
+          <div class="user-image">
+            <a href="{{data['url']}}" target="_blank">
+            <img src="{{data['url']}}" alt="User picture" />
+            </a>
+          </div>
+          <div class="copy-data">
+            <button class="btn-copy" id="copy" title="Copy">
+             <i class="fa-regular fa-copy fa-lg"></i>
+            </button>
+          </div>
+          <ul class="user-data" id="user-data">
+            {% for key, value in data.items() if key!="url" %}
+              <li><strong>{{ key }}:</strong> {{ value }}</li>
+            {% endfor %}
+          </ul>
         </div>
-        <div class="copy-data">
-          <button class="btn-copy" id="copy" title="Copy">
-            <i class="fa-regular fa-copy fa-lg"></i>
-          </button>
-        </div>
-        <ul class="user-data" id="result">
-          {% for key, value in result.items() %}
-          <li><strong>{{ key }}:</strong> {{ value }}</li>
-          {% endfor %}
-        </ul>
-      </div>
       {% endif %}
     </div>
     <script src="{{ url_for('static', filename='JS/script.js') }}"></script>
