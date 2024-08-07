@@ -7,7 +7,7 @@ from utils import get_user_data
 load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = os.getenv('FLASK_SECRET_KEY')
+app.secret_key = 'iURNqZQjV49meo5a2vXEKrnGUMmV3Urk'
 app.config['SESSION_TYPE'] = 'filesystem'
 port = int(os.environ.get('PORT', 5000))
 
@@ -24,7 +24,10 @@ def main():
             session["user_data"]=response
         return redirect(url_for('main'))
     
+   
     user_data = session.pop('user_data', None)
+    print(user_data)
+
     return render_template('index.html',data=user_data)
         
 if __name__=="__main__":
