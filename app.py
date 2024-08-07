@@ -4,12 +4,8 @@ from dotenv import load_dotenv
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from utils import get_user_data
 
-load_dotenv()
-secret_key = os.environ.get('FLASK_SECRET_KEY')
-
-
 app = Flask(__name__)
-app.secret_key = secret_key
+app.secret_key = 'iURNqZQjV49meo5a2vXEKrnGUMmV3Urk'
 app.config['SESSION_TYPE'] = 'filesystem'
 port = int(os.environ.get('PORT', 5000))
 
