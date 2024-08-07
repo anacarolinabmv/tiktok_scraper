@@ -7,6 +7,9 @@ from utils import get_user_data
 load_dotenv()
 
 app = Flask(__name__)
+app.secret_key = os.getenv('FLASK_SECRET_KEY')
+app.config['SESSION_TYPE'] = 'filesystem'
+port = int(os.environ.get('PORT', 5000))
 
 
 @app.route('/',methods = ["GET","POST"])
@@ -25,6 +28,6 @@ def main():
     return render_template('index.html',data=user_data)
         
 if __name__=="__main__":
-    app.secret_key = os.getenv('FLASK_SECRET_KEY')
-    app.config['SESSION_TYPE'] = 'filesystem'
-    app.run(debug=True)
+   
+
+    app.run(host='0.0.0.0', port=port, debug=True)
