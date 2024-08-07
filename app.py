@@ -8,7 +8,6 @@ load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = os.getenv('FLASK_SECRET_KEY')
-
 @app.route('/',methods = ["GET","POST"])
 def main():
     if request.method=="POST":
